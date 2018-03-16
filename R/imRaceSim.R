@@ -5,15 +5,22 @@
 #' @import htmlwidgets
 #'
 #' @export
-imRaceSim <- function(data, width = NULL, height = NULL, elementId = NULL) {
+imRaceSim <- function(data, indivdual, width = NULL, height = NULL, elementId = NULL) {
+
+  cat("size of data = ", nrow(data))
+  cat("\n")
+
+  cat("size of indivdual = ", nrow(indivdual))
+  cat("\n")
 
   # forward options using x
   if (missing(data)) {data <- data.frame()}
-  #if (missing(indivdual)) {indivdual <- data.frame()}
+  if (missing(indivdual)) {indivdual <- data.frame()}
 
   data <- jsonlite::toJSON(data)
-  #indivdual <- jsonlite::toJSON(indivdual)
-  x <- list(data = data)
+  indivdual <- jsonlite::toJSON(indivdual)
+
+  x <- list(data = data, indivdual=indivdual)
 
   # create widget
   htmlwidgets::createWidget(
@@ -21,6 +28,7 @@ imRaceSim <- function(data, width = NULL, height = NULL, elementId = NULL) {
     x,
     width = width,
     height = height,
+    sizingPolicy = htmlwidgets::sizingPolicy(browser.padding = 75, browser.fill = TRUE),
     package = 'imRaceSim',
     elementId = elementId
   )
@@ -43,7 +51,7 @@ imRaceSim <- function(data, width = NULL, height = NULL, elementId = NULL) {
 #' @name imRaceSim-shiny
 #'
 #' @export
-imRaceSimOutput <- function(outputId, width = '100%', height = '800px'){
+imRaceSimOutput <- function(outputId, width = 'auto', height = '500px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'imRaceSim', width, height, package = 'imRaceSim')
 }
 
