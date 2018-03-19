@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-    name: 'imRaceSim',
+    name: 'imSwimSim',
 
     type: 'output',
 
@@ -36,27 +36,7 @@ HTMLWidgets.widget({
                         .ease(d3.easeLinear)
                         .duration(function(d) {
                             return d.swim * speedUp;
-                        }).transition()
-                        .attr("cx", xa(endOfT1))
-                        .ease(d3.easeLinear)
-                        .duration(function(d) {
-                            return d.t1 * speedUp;
-                        }).transition()
-                        .attr("cx", xa(endOfBike))
-                        .ease(d3.easeLinear)
-                        .duration(function(d) {
-                            return d.bike * speedUp;
-                        }).transition()
-                        .attr("cx", xa(endOfT2))
-                        .ease(d3.easeLinear)
-                        .duration(function(d) {
-                            return d.t2 * speedUp;
-                        }).transition()
-                        .attr("cx", xa(endOfRun))
-                        .ease(d3.easeLinear)
-                        .duration(function(d) {
-                            return d.run * speedUp;
-                        });
+                        }).transition();
                 }
 
                 function waveColors() {
@@ -122,7 +102,7 @@ HTMLWidgets.widget({
 
                 //create a scale for the x axis relative to the width
                 var xa = d3.scaleLinear()
-                    .domain([0, endOfRun])
+                    .domain([0, endOfSwim])
                     .range([0, width]);
 
                 //create a scale for the y axis relatie to the height
@@ -187,32 +167,8 @@ HTMLWidgets.widget({
                     .style("text-anchor", "middle")
                     .text("Swim 3.9km");
                 race.append("text")
-                    .attr("class", "plotLabel")
-                    .attr("x", xa(endOfT1))
-                    .attr("y", height)
-                    .style("text-anchor", "middle")
-                    .text("T-1");
-                race.append("text")
-                    .attr("class", "plotLabel")
-                    .attr("x", xa(endOfSwim + (bikeDistance / 2)))
-                    .attr("y", height / 2)
-                    .style("text-anchor", "middle")
-                    .text("Bike 180km");
-                race.append("text")
-                    .attr("class", "plotLabel")
-                    .attr("x", xa(endOfT2))
-                    .attr("y", height)
-                    .style("x", "middle")
-                    .text("T-2");
-                race.append("text")
                     .attr("class", "plotlabel")
-                    .attr("x", xa(endOfBike + (runDistance / 2)))
-                    .attr("y", height / 2)
-                    .style("text-anchor", "middle")
-                    .text("Run 42.2km");
-                race.append("text")
-                    .attr("class", "plotlabel")
-                    .attr("x", xa(endOfRun))
+                    .attr("x", xa(endOfSwim))
                     .attr("y", height)
                     .style("text-anchor", "end")
                     .text("Finish");
@@ -226,40 +182,8 @@ HTMLWidgets.widget({
                     .attr("stroke-width", 0.5)
                     .attr("stroke", "gray")
                     .style("stroke-dasharray", ("3,3"));
-                race.append("line")
-                    .attr("x1", xa(endOfT1))
-                    .attr("y1", 0)
-                    .attr("x2", xa(endOfT1))
-                    .attr("y2", height)
-                    .attr("stroke-width", 0.5)
-                    .attr("stroke", "gray")
-                    .style("stroke-dasharray", ("3,3"));
-                race.append("line")
-                    .attr("x1", xa(endOfBike))
-                    .attr("y1", 0)
-                    .attr("x2", xa(endOfBike))
-                    .attr("y2", height)
-                    .attr("stroke-width", 0.5)
-                    .attr("stroke", "gray")
-                    .style("stroke-dasharray", ("3,3"));
-                race.append("line")
-                    .attr("x1", xa(endOfT2))
-                    .attr("y1", 0)
-                    .attr("x2", xa(endOfT2))
-                    .attr("y2", height)
-                    .attr("stroke-width", 0.5)
-                    .attr("stroke", "gray")
-                    .style("stroke-dasharray", ("3,3"));
-                race.append("line")
-                    .attr("x1", xa(endOfRun))
-                    .attr("y1", 0)
-                    .attr("x2", xa(endOfRun))
-                    .attr("y2", height)
-                    .attr("stroke-width", 0.5)
-                    .attr("stroke", "gray")
-                    .style("stroke-dasharray", ("3,3"));
 
-                console.log("imRaceSim");
+                console.log("imSwimSim");
                 waveColors();
                 raceAnimation();
 

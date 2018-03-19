@@ -5,28 +5,33 @@
 #' @import htmlwidgets
 #'
 #' @export
-imRaceSim <- function(data, width = NULL, height = NULL, elementId = NULL) {
+imSwimSim <- function(data, indivdual, width = NULL, height = NULL, elementId = NULL) {
+
+  cat("imSwimSim")
+  cat("\n")
 
   # forward options using x
   if (missing(data)) {data <- data.frame()}
-  #if (missing(indivdual)) {indivdual <- data.frame()}
+  if (missing(indivdual)) {indivdual <- data.frame()}
 
   data <- jsonlite::toJSON(data)
-  #indivdual <- jsonlite::toJSON(indivdual)
-  x <- list(data = data)
+  indivdual <- jsonlite::toJSON(indivdual)
+
+  x <- list(data = data, indivdual=indivdual)
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'imRaceSim',
+    name = 'imSwimSim',
     x,
     width = width,
     height = height,
+    sizingPolicy = htmlwidgets::sizingPolicy(browser.padding = 75, browser.fill = TRUE),
     package = 'imRaceSim',
     elementId = elementId
   )
 }
 
-#' Shiny bindings for imRaceSim
+#' Shiny bindings for imSwimSim
 #'
 #' Output and render functions for using imRaceSim within Shiny
 #' applications and interactive Rmd documents.
@@ -40,16 +45,16 @@ imRaceSim <- function(data, width = NULL, height = NULL, elementId = NULL) {
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name imRaceSim-shiny
+#' @name imSwimSim-shiny
 #'
 #' @export
-imRaceSimOutput <- function(outputId, width = '100%', height = '800px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'imRaceSim', width, height, package = 'imRaceSim')
+imSwimSimOutput <- function(outputId, width = 'auto', height = '500px'){
+  htmlwidgets::shinyWidgetOutput(outputId, 'imSwimSim', width, height, package = 'imRaceSim')
 }
 
-#' @rdname imRaceSim-shiny
+#' @rdname imSwimSim-shiny
 #' @export
-renderImRaceSim <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderImSwimSim <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, imRaceSimOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, imSwimSimOutput, env, quoted = TRUE)
 }

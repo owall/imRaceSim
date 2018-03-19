@@ -5,9 +5,9 @@
 #' @import htmlwidgets
 #'
 #' @export
-imRaceSim <- function(data, indivdual, width = NULL, height = NULL, elementId = NULL) {
+imBikeSim <- function(data, indivdual, width = NULL, height = NULL, elementId = NULL) {
 
-  cat("imRaceSim")
+  cat("imBikeSim")
   cat("\n")
 
   # forward options using x
@@ -21,7 +21,7 @@ imRaceSim <- function(data, indivdual, width = NULL, height = NULL, elementId = 
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'imRaceSim',
+    name = 'imBikeSim',
     x,
     width = width,
     height = height,
@@ -45,16 +45,16 @@ imRaceSim <- function(data, indivdual, width = NULL, height = NULL, elementId = 
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name imRaceSim-shiny
+#' @name imBikeSim-shiny
 #'
 #' @export
-imRaceSimOutput <- function(outputId, width = 'auto', height = '500px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'imRaceSim', width, height, package = 'imRaceSim')
+imBikeSimOutput <- function(outputId, width = 'auto', height = '500px'){
+  htmlwidgets::shinyWidgetOutput(outputId, 'imBikeSim', width, height, package = 'imRaceSim')
 }
 
-#' @rdname imRaceSim-shiny
+#' @rdname imBikeSim-shiny
 #' @export
-renderImRaceSim <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderImBikeSim <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, imRaceSimOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, imBikeSimOutput, env, quoted = TRUE)
 }
