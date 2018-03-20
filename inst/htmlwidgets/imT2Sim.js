@@ -1,6 +1,6 @@
 HTMLWidgets.widget({
 
-    name: 'imBikeSim',
+    name: 'imT2Sim',
 
     type: 'output',
 
@@ -29,13 +29,15 @@ HTMLWidgets.widget({
                     var toMilliSecs = 1000;
                     var speedUp = toMilliSecs / 600;
 
+                    speedUp = speedUp * 64;
+
                     circles.attr("cx", 0);
 
-                    bikePortion = circles.transition()
-                        .attr("cx", xa(bikeDistance))
+                    t2Portion = circles.transition()
+                        .attr("cx", xa(t2Distance))
                         .ease(d3.easeLinear)
                         .duration(function(d) {
-                            return d.bike * speedUp;
+                            return d.t2 * speedUp;
                         }).transition();
                 }
 
@@ -102,7 +104,7 @@ HTMLWidgets.widget({
 
                 //create a scale for the x axis relative to the width
                 var xa = d3.scaleLinear()
-                    .domain([0, bikeDistance])
+                    .domain([0, t2Distance])
                     .range([0, width]);
 
                 //create a scale for the y axis relatie to the height
@@ -162,28 +164,28 @@ HTMLWidgets.widget({
                     .text("Start");
                 race.append("text")
                     .attr("class", "plotLabel")
-                    .attr("x", xa(bikeDistance / 2))
+                    .attr("x", xa(t2Distance / 2))
                     .attr("y", height / 2)
                     .style("text-anchor", "middle")
-                    .text("Bike 180km");
+                    .text("T2");
                 race.append("text")
                     .attr("class", "plotlabel")
-                    .attr("x", xa(bikeDistance))
+                    .attr("x", xa(t2Distance))
                     .attr("y", height)
                     .style("text-anchor", "end")
                     .text("Finish");
 
                 //Lines
                 race.append("line")
-                    .attr("x1", xa(bikeDistance))
+                    .attr("x1", xa(t2Distance))
                     .attr("y1", 0)
-                    .attr("x2", xa(bikeDistance))
+                    .attr("x2", xa(t2Distance))
                     .attr("y2", height)
                     .attr("stroke-width", 0.5)
                     .attr("stroke", "gray")
                     .style("stroke-dasharray", ("3,3"));
 
-                console.log("imBikeSim");
+                console.log("imSwimSim");
                 waveColors();
                 raceAnimation();
 

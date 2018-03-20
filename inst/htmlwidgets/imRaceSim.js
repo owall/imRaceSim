@@ -31,7 +31,7 @@ HTMLWidgets.widget({
 
                     circles.attr("cx", 0);
 
-                    swimPortion = circles.transition()
+                    racePortion = circles.transition()
                         .attr("cx", xa(endOfSwim))
                         .ease(d3.easeLinear)
                         .duration(function(d) {
@@ -97,7 +97,7 @@ HTMLWidgets.widget({
                   var ia_list = x.indivdual;
                   if (!!ia_list) {
                     for (var i = 0; i < ia_list.length; i++) {
-                      //console.log(ia_list[i].name);
+                      console.log(ia_list[i].name);
                       if (ia_list[i].name == name) {
                           return true;
                       }
@@ -160,6 +160,8 @@ HTMLWidgets.widget({
                     .text(function (d) {return d.name})
                     //.style("visibility", "hidden")
                     .style("visibility", function(d) {return (isIndividualAthlete(d.name) ? "visible":"hidden")});
+
+
 
                 //create the plot
 

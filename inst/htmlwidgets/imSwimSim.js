@@ -29,6 +29,8 @@ HTMLWidgets.widget({
                     var toMilliSecs = 1000;
                     var speedUp = toMilliSecs / 600;
 
+                    speedUp = speedUp * 4;
+
                     circles.attr("cx", 0);
 
                     swimPortion = circles.transition()

@@ -31,7 +31,7 @@ HTMLWidgets.widget({
 
                     circles.attr("cx", 0);
 
-                    swimPortion = circles.transition()
+                    runPortion = circles.transition()
                         .attr("cx", xa(runDistance))
                         .ease(d3.easeLinear)
                         .duration(function(d) {
